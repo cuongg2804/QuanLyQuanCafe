@@ -45,10 +45,15 @@
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.flowLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -209,10 +214,50 @@
             // 
             // flowLayoutPanel4
             // 
+            this.flowLayoutPanel4.Controls.Add(this.button2);
+            this.flowLayoutPanel4.Controls.Add(this.button3);
+            this.flowLayoutPanel4.Controls.Add(this.button4);
+            this.flowLayoutPanel4.Controls.Add(this.button5);
             this.flowLayoutPanel4.Location = new System.Drawing.Point(488, 16);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
             this.flowLayoutPanel4.Size = new System.Drawing.Size(467, 86);
             this.flowLayoutPanel4.TabIndex = 2;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(3, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(108, 83);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(117, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(108, 83);
+            this.button3.TabIndex = 5;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(231, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(108, 83);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(345, 3);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(108, 83);
+            this.button5.TabIndex = 7;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
             // 
             // fAdmin
             // 
@@ -227,6 +272,7 @@
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.flowLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -250,5 +296,9 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }
