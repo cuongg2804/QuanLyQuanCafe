@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuanLiQuanCafe.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,10 +29,23 @@ namespace QuanLiQuanCafe
 
         private void btnDN_Click(object sender, EventArgs e)
         {
-            fTableManage f = new fTableManage();
-            this.Hide();
-            f.ShowDialog();
-            this.Show();
+            String username = txtDN.Text;
+            String password = txtMK.Text;   
+            if (Login(username, password))
+            {
+                fTableManage f = new fTableManage();
+                this.Hide();
+                f.ShowDialog();
+                this.Show();
+            }
+            else
+            {
+                MessageBox.Show("Đăng nhập thất bại!","Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private Boolean Login (String username, String password) { 
+            return Account.Login(username, password);
         }
     }
 }

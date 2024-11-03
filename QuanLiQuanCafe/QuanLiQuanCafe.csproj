@@ -46,42 +46,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="fAccountInfo.cs">
+    <Compile Include="Controller\Account.Controller.cs" />
+    <Compile Include="Controller\DataProvider.cs" />
+    <Compile Include="Model\Table.Model.cs" />
+    <Compile Include="View\fAccountInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fAccountInfo.Designer.cs">
+    <Compile Include="View\fAccountInfo.Designer.cs">
       <DependentUpon>fAccountInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="fAdmin.cs">
+    <Compile Include="View\fAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fAdmin.Designer.cs">
+    <Compile Include="View\fAdmin.Designer.cs">
       <DependentUpon>fAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="fLogin.cs">
+    <Compile Include="View\fLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fLogin.Designer.cs">
+    <Compile Include="View\fLogin.Designer.cs">
       <DependentUpon>fLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="fTableManage.cs">
+    <Compile Include="View\fTableManage.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="fTableManage.Designer.cs">
+    <Compile Include="View\fTableManage.Designer.cs">
       <DependentUpon>fTableManage.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="fAccountInfo.resx">
+    <EmbeddedResource Include="View\fAccountInfo.resx">
       <DependentUpon>fAccountInfo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="fAdmin.resx">
+    <EmbeddedResource Include="View\fAdmin.resx">
       <DependentUpon>fAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="fLogin.resx">
+    <EmbeddedResource Include="View\fLogin.resx">
       <DependentUpon>fLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="fTableManage.resx">
+    <EmbeddedResource Include="View\fTableManage.resx">
       <DependentUpon>fTableManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -93,6 +96,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Controller\Table.Controller.cs" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -106,5 +110,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
