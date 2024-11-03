@@ -14,8 +14,7 @@ namespace QuanLiQuanCafe.Controller
             String query = "Select * from Account where username = @username and password = @password";
             DataTable tb = new DataTable();
             tb =  DataProvider.ExecuteQuery(query, new object[] { username, password });
-            return tb.Rows.Count == 1 ;
-            
+            return tb.Rows.Count == 1;
         }
     }
 }

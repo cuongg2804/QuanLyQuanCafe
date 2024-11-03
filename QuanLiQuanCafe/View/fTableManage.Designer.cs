@@ -48,6 +48,8 @@
             this.cmbFood = new System.Windows.Forms.ComboBox();
             this.cmbFoodCategory = new System.Windows.Forms.ComboBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.IdFood = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.count = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -58,6 +60,7 @@
             // 
             // flpTable
             // 
+            this.flpTable.AutoScroll = true;
             this.flpTable.Location = new System.Drawing.Point(5, 42);
             this.flpTable.Name = "flpTable";
             this.flpTable.Size = new System.Drawing.Size(496, 524);
@@ -73,12 +76,17 @@
             // 
             // lsvBill
             // 
+            this.lsvBill.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.IdFood,
+            this.count});
+            this.lsvBill.GridLines = true;
             this.lsvBill.HideSelection = false;
             this.lsvBill.Location = new System.Drawing.Point(3, 6);
             this.lsvBill.Name = "lsvBill";
             this.lsvBill.Size = new System.Drawing.Size(360, 336);
             this.lsvBill.TabIndex = 0;
             this.lsvBill.UseCompatibleStateImageBehavior = false;
+            this.lsvBill.View = System.Windows.Forms.View.Details;
             // 
             // menuStrip1
             // 
@@ -222,6 +230,15 @@
             this.cmbFoodCategory.Size = new System.Drawing.Size(252, 24);
             this.cmbFoodCategory.TabIndex = 0;
             // 
+            // IdFood
+            // 
+            this.IdFood.Text = "Món ăn";
+            // 
+            // count
+            // 
+            this.count.Text = "Số lượng";
+            this.count.Width = 90;
+            // 
             // fTableManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -236,7 +253,6 @@
             this.Name = "fTableManage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý";
-//            this.Load += new System.EventHandler(this.fTableManage_Load);
             this.panel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -272,5 +288,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown nmDiscount;
         private System.Windows.Forms.ToolStripMenuItem quảnLýToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader IdFood;
+        private System.Windows.Forms.ColumnHeader count;
     }
 }

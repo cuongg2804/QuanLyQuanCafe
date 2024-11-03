@@ -27,14 +27,41 @@ namespace QuanLiQuanCafe
             foreach (Table table in tables)
             {
                 Button bt = new Button();
+               
+                bt.Name = table.ID.ToString();
+                
                 bt.Width = 80;
                 bt.Height = 80;
                 bt.Text = table.Name + "\n" + table.Status;
+                if(table.Status.Equals("Có người"))
+                {
+                    bt.BackColor = Color.Gray;
+                }
+                bt.Click += bt_Click;
                 flpTable.Controls.Add(bt);
             }
         }
+
+
         #endregion
         #region Event
+        private void bt_Click(object sender, EventArgs e)
+        {
+            lsvBill.Items.Clear();
+            int idTable = Convert.ToInt32((sender as Button).Name.ToString());
+            int idBill = 0;
+            if (BillController.GetIdBillByIdTable(idTable)  !=null )
+            {
+                idBill = Convert.ToInt32(BillController.GetIdBillByIdTable(idTable).Id);
+                List<BillInfoModel> listBillInfo = BillInforController.GetBillInfoByIdBill(idBill);
+                foreach (BillInfoModel billInfor in listBillInfo)
+                {
+                    ListViewItem lvs = new ListViewItem(billInfor.Id.ToString());
+                    lvs.SubItems.Add(billInfor.Count.ToString());
+                    lsvBill.Items.Add(lvs);
+                }
+            }
+        }
         private void thôngTinTàiKhoảnToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             fAccountInfo fAccountInfo = new fAccountInfo();

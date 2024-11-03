@@ -47,7 +47,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\Account.Controller.cs" />
+    <Compile Include="Controller\BillInfor.Controller.cs" />
     <Compile Include="Controller\DataProvider.cs" />
+    <Compile Include="Model\Bill.Model.cs" />
+    <Compile Include="Model\BillInfo.Model.cs" />
     <Compile Include="Model\Table.Model.cs" />
     <Compile Include="View\fAccountInfo.cs">
       <SubType>Form</SubType>
@@ -110,6 +113,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Controller\Bill.Controller.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

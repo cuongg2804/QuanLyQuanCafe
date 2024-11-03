@@ -17,7 +17,7 @@ namespace QuanLiQuanCafe.Model
             this.name = name;
             this.status = status;   
         }
-        public int ID { get { return ID; } set { iD = iD; } }
+        public int ID { get { return iD; } set { iD = iD; } }
         public String Name { get { return name; } set { name = value; } }
         public String Status { get { return status; } set { status = value; } }
     }
