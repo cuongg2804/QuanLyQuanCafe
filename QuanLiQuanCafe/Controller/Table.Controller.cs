@@ -28,5 +28,11 @@ namespace QuanLiQuanCafe.Controller
 			}
             return list;
 		}
+
+        public static void UpdateStatusTable(String st, int idTable)
+        {
+             DataProvider.ExecuteNonquery("Update Ban set status = N'" + st + "' where id = " + idTable);
+            return;
+        }
     }
 }

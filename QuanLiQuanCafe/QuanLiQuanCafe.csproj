@@ -48,9 +48,14 @@
   <ItemGroup>
     <Compile Include="Controller\Account.Controller.cs" />
     <Compile Include="Controller\BillInfor.Controller.cs" />
+    <Compile Include="Controller\Category.Controller.cs" />
     <Compile Include="Controller\DataProvider.cs" />
+    <Compile Include="Controller\Food.Controller.cs" />
     <Compile Include="Model\Bill.Model.cs" />
     <Compile Include="Model\BillInfo.Model.cs" />
+    <Compile Include="Model\Category.Model.cs" />
+    <Compile Include="Model\Food.Model.cs" />
+    <Compile Include="Model\MenuModel.cs" />
     <Compile Include="Model\Table.Model.cs" />
     <Compile Include="View\fAccountInfo.cs">
       <SubType>Form</SubType>

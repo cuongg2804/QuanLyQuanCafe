@@ -42,5 +42,26 @@ namespace QuanLiQuanCafe.Controller
             return dt;
         }
 
+
+        public static void ExecuteNonquery (String query, Object[] parameters = null)
+        {
+            Connection = new SqlConnection (connection);
+            Connection.Open();
+            SqlCommand cmd = new SqlCommand(query, Connection);
+            String []queryNew = query.Split(' ');
+            if(parameters != null)
+            {
+                int i = 0;
+                foreach(String item in queryNew)
+                {
+                    if (item.Contains("@"))
+                    {
+                        cmd.Parameters.AddWithValue (item, parameters[i++]);
+                    }
+                }
+            }
+            cmd.ExecuteNonQuery ();
+            Connection.Close();
+        }
     }
 }

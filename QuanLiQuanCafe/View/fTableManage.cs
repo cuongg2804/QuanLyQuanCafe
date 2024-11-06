@@ -18,22 +18,25 @@ namespace QuanLiQuanCafe
         {
             InitializeComponent();
             LoadTable();
-
+            LoadCategoryFood();
         }
+        private int idTable = -1;
+
         #region Method
+
         private void LoadTable()
         {
-            List<Table> tables = TableController.LoadTable() ;
+            List<Table> tables = TableController.LoadTable();
             foreach (Table table in tables)
             {
                 Button bt = new Button();
-               
+
                 bt.Name = table.ID.ToString();
-                
+
                 bt.Width = 80;
                 bt.Height = 80;
                 bt.Text = table.Name + "\n" + table.Status;
-                if(table.Status.Equals("Có người"))
+                if (table.Status.Equals("Có người"))
                 {
                     bt.BackColor = Color.Gray;
                 }
@@ -42,25 +45,55 @@ namespace QuanLiQuanCafe
             }
         }
 
+        private void LoadCategoryFood ()
+        {
+           List<CategoryModel> listCategory = CategoryController.LoadCategory();
+            cmbFoodCategory.DisplayMember = "name";
+            cmbFoodCategory.ValueMember = "id";
+            cmbFoodCategory.DataSource = listCategory;
+        }
+
+        private void LoadFood (int idCategory)
+        {
+            DataTable tb = FoodController.LoadFoodByIdCategory(idCategory);
+            cmbFood.DisplayMember = "name";
+            cmbFood.ValueMember = "id"; 
+            cmbFood.DataSource = tb;
+
+        }
+
+        private void LoadBill()
+        {
+            lsvBill.Items.Clear();
+            List<MenuModel> list = new List<MenuModel>();
+            double totalBill = 0;
+
+            foreach (MenuModel model in BillInforController.GetMenuByIdTable(idTable))
+            {
+                ListViewItem lvs = new ListViewItem(model.Name.ToString());
+                lvs.SubItems.Add(model.Count.ToString());
+                lvs.SubItems.Add(model.Price.ToString("#,0 đ"));
+                lvs.SubItems.Add(model.totalPrice().ToString("#,0 đ"));
+                lsvBill.Items.Add(lvs);
+                totalBill += Convert.ToDouble(model.totalPrice());
+            }
+            txtTotalPrice.Text = totalBill.ToString("#,0 đ");
+        }
 
         #endregion
         #region Event
+        private void cmbFoodCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int idCategory = cmbFoodCategory.SelectedIndex + 1;
+            LoadFood (idCategory);
+        }
         private void bt_Click(object sender, EventArgs e)
         {
-            lsvBill.Items.Clear();
-            int idTable = Convert.ToInt32((sender as Button).Name.ToString());
-            int idBill = 0;
-            if (BillController.GetIdBillByIdTable(idTable)  !=null )
-            {
-                idBill = Convert.ToInt32(BillController.GetIdBillByIdTable(idTable).Id);
-                List<BillInfoModel> listBillInfo = BillInforController.GetBillInfoByIdBill(idBill);
-                foreach (BillInfoModel billInfor in listBillInfo)
-                {
-                    ListViewItem lvs = new ListViewItem(billInfor.Id.ToString());
-                    lvs.SubItems.Add(billInfor.Count.ToString());
-                    lsvBill.Items.Add(lvs);
-                }
-            }
+            
+            idTable = Convert.ToInt32((sender as Button).Name.ToString());
+            LoadBill();
+
+
         }
         private void thôngTinTàiKhoảnToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -76,8 +109,39 @@ namespace QuanLiQuanCafe
             fAdmin.ShowDialog();
             this.Show();
         }
+
+        private void btnThemMon_Click(object sender, EventArgs e)
+        {
+            int idFood = (int)cmbFood.SelectedValue;
+            int count = (int)numCount.Value;
+            if (idTable != -1)
+            {
+                var bill = BillController.GetIdBillByIdTable(idTable);
+                int idBillExist = bill != null ? bill.Id : -1;
+                if (idBillExist != -1)
+                { 
+
+                    BillInforController.InsertBillInfo(idTable, idBillExist, idFood, count);
+                }
+                else
+                {
+                    int idBill = BillController.getIdMax() + 1;
+                    BillController.InsertBill(idTable);
+                    BillInforController.insertNewBillInfo(idBill, idFood, count);
+                    TableController.UpdateStatusTable("Có người", idTable);
+                    flpTable.Controls.Clear();
+                    LoadTable();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn bàn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            LoadBill();
+        }
+
         #endregion
 
-        
+
     }
 }
