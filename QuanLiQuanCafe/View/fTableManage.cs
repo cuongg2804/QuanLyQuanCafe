@@ -26,6 +26,7 @@ namespace QuanLiQuanCafe
 
         private void LoadTable()
         {
+            flpTable.Controls.Clear();
             List<Table> tables = TableController.LoadTable();
             foreach (Table table in tables)
             {
@@ -68,16 +69,18 @@ namespace QuanLiQuanCafe
             List<MenuModel> list = new List<MenuModel>();
             double totalBill = 0;
 
-            foreach (MenuModel model in BillInforController.GetMenuByIdTable(idTable))
-            {
-                ListViewItem lvs = new ListViewItem(model.Name.ToString());
-                lvs.SubItems.Add(model.Count.ToString());
-                lvs.SubItems.Add(model.Price.ToString("#,0 đ"));
-                lvs.SubItems.Add(model.totalPrice().ToString("#,0 đ"));
-                lsvBill.Items.Add(lvs);
-                totalBill += Convert.ToDouble(model.totalPrice());
-            }
-            txtTotalPrice.Text = totalBill.ToString("#,0 đ");
+            
+                foreach (MenuModel model in BillInforController.GetMenuByIdTable(idTable))
+                {
+                    ListViewItem lvs = new ListViewItem(model.Name.ToString());
+                    lvs.SubItems.Add(model.Count.ToString());
+                    lvs.SubItems.Add(model.Price.ToString("#,0 đ"));
+                    lvs.SubItems.Add(model.totalPrice().ToString("#,0 đ"));
+                    lsvBill.Items.Add(lvs);
+                    totalBill += Convert.ToDouble(model.totalPrice());
+                }
+                txtTotalPrice.Text = totalBill.ToString("#,0 đ");
+            
         }
 
         #endregion
@@ -140,8 +143,32 @@ namespace QuanLiQuanCafe
             LoadBill();
         }
 
+
         #endregion
 
+        private void  btnThanhToan_Click(object sender, EventArgs e)
+        {
+            double totalPrice = Convert.ToDouble(txtTotalPrice.Text.Split(' ')[0]);
+            float discount = (float)nmDiscount.Value;
+            double totalPriceDis = totalPrice - (totalPrice / 100) * discount;
+            String tb = "Thanh toán hóa đơn Bàn " + idTable
+                + "\n\n\tThành tiền :\t" + totalPrice.ToString("#,0 đ")
+                + "\n\tGiảm giá : \t" + discount +"%"
+                +"\n\tTổng hóa hơn: \t" + totalPriceDis.ToString("#,0 đ");
 
+
+            DialogResult notification = MessageBox.Show(tb, "Thông báo", MessageBoxButtons.OKCancel);
+            if (notification == DialogResult.OK)
+            {
+                int bill = (int)BillController.GetIdBillByIdTable(idTable).Id;
+                BillController.UpdateStatusBillCheckOut(bill, idTable, discount, totalPrice);
+                TableController.UpdateStatusTable("Trống", idTable);
+                nmDiscount.Value = 0;
+                txtTotalPrice.Text = "0";
+
+                lsvBill.Items.Clear();
+                LoadTable() ;   
+            }
+        }
     }
 }

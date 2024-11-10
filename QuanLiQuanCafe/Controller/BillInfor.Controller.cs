@@ -37,7 +37,7 @@ namespace QuanLiQuanCafe.Controller
 
         public static List<MenuModel> GetMenuByIdTable (int idTable)
         {
-            string sql = "Select idBill ,idTable, name, count, price from Bill Inner join BillInfo on Bill.id = BillInfo.idBill inner join Food on BillInfo.idFood = Food.id where idTable = " + idTable + " and status = 0";
+            string sql = "Select idBill ,idTable, name, count, price,status from Bill Inner join BillInfo on Bill.id = BillInfo.idBill inner join Food on BillInfo.idFood = Food.id where idTable = " + idTable + " and Bill.status = 0";
             DataTable data = DataProvider.ExecuteQuery (sql);
             List<MenuModel> listMenu = new List<MenuModel>();
             if(data.Rows.Count > 0)
@@ -49,8 +49,8 @@ namespace QuanLiQuanCafe.Controller
                     int count = (int)row["count"];
                     double  price = Convert.ToDouble(row["price"]);
                     string name = (string)row["name"];
-
-                    MenuModel item = new MenuModel(idBill,idTable, count, price,name);
+                    int status = (int)row["status"];
+                    MenuModel item = new MenuModel(idBill,idTable, count, price,name,status);
                     listMenu.Add(item);
                 }
             }

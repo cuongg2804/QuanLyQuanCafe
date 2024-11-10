@@ -22,7 +22,9 @@ namespace QuanLiQuanCafe.Controller
                 int idtable = (int)dt.Rows[0]["idTable"];
                 int status = (int)dt.Rows[0]["status"];
                 DateTime TimeCheckIn = (DateTime)dt.Rows[0]["DateCheckIn"];
-                bill = new BillModel(id, idtable, TimeCheckIn, status);
+                int discount = (int)dt.Rows[0]["discount"];
+                int totalBill = (int)dt.Rows[0]["totalBill"];
+                bill = new BillModel(id, idtable, TimeCheckIn, status, discount,totalBill);
                 
             }
             return bill;
@@ -47,6 +49,13 @@ namespace QuanLiQuanCafe.Controller
             return Convert.ToInt32(DataProvider.ExecuteQuery("select Max(id) from Bill").Rows[0][0]);
 
 
+        }
+
+        public static void UpdateStatusBillCheckOut(int idBill, int idTable, double discount, double totalPrice)
+        {
+            String sql = "update Bill set DateCheckOut = @day , status = 1 , discount = @dis , totalBill = @total where id = @idBill and idTable = @idTable ";
+            DataProvider.ExecuteNonquery(sql, new object[] { DateTime.Now ,discount, totalPrice, idBill, idTable });
+          
         }
     }
 }

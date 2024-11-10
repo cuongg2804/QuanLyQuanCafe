@@ -60,7 +60,9 @@ namespace QuanLiQuanCafe.Controller
                     }
                 }
             }
+
             cmd.ExecuteNonQuery ();
+
             Connection.Close();
         }
     }
